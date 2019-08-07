@@ -5,9 +5,11 @@ const Designer = conn.define('designer', {
     name: Sequelize.STRING,
     password: Sequelize.STRING,
     uuid: {
-      type: DataTypes.UUIDV1,
-      primaryKey: true
-    },
+        type: Sequelize.UUIDV,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true
+      },
+    phone: Sequelize.INTEGER(10),
     call_time: Sequelize.DATE,
     check_in_time: Sequelize.DATE
 

@@ -6,9 +6,10 @@ const Model = require('./Model');
 const Look = conn.define('Look', {
     description: Sequelize.STRING,
     uuid: {
-      type: DataTypes.UUIDV1,
-      primaryKey: true
-    },
+        type: Sequelize.UUIDV,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true
+      },
 }, {underscored: true});
 
 Look.belongsTo(Collection);

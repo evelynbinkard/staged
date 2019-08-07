@@ -5,13 +5,16 @@ const Model = conn.define('model', {
     name: Sequelize.STRING,
     password: Sequelize.STRING,
     uuid: {
-      type: DataTypes.UUIDV1,
-      primaryKey: true
-    },
+        type: Sequelize.UUIDV,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true
+      },
+    phone: Sequelize.INTEGER(10),
     call_time: Sequelize.DATE,
     check_in_time: Sequelize.DATE,
-    instagram: Sequelize.STRING
+    instagram: Sequelize.STRING,
+    headshot: Sequelize.STRING
 
 });
 
-module.exports = Designer;
+module.exports = Model;
