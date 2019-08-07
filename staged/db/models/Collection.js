@@ -4,9 +4,9 @@ const Designer = require('./Designer')
 
 const Collection = conn.define('collection', {
     name: Sequelize.STRING,
-    uuid: {
-        type: Sequelize.UUIDV,
-        defaultValue: Sequelize.UUIDV4,
+    id: {
+        type: Sequelize.UUID,
+        // defaultValue: Sequelize.UUIDV4,
         primaryKey: true
       },
     song: Sequelize.STRING,

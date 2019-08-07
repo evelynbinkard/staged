@@ -5,9 +5,9 @@ const Model = require('./Model');
 
 const Look = conn.define('Look', {
     description: Sequelize.STRING,
-    uuid: {
-        type: Sequelize.UUIDV,
-        defaultValue: Sequelize.UUIDV4,
+    id: {
+        type: Sequelize.UUID,
+        //defaultValue: Sequelize.UUIDV4,
         primaryKey: true
       },
 }, {underscored: true});

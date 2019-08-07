@@ -5,9 +5,9 @@ const Model = require('./Model')
 const Backstage = conn.define('backstage', {
     name: Sequelize.STRING,
     password: Sequelize.STRING,
-    uuid: {
-        type: Sequelize.UUIDV,
-        defaultValue: Sequelize.UUIDV4,
+    id: {
+        type: Sequelize.UUID,
+        
         primaryKey: true
       },
     phone: Sequelize.INTEGER(10),
