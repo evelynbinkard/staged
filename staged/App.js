@@ -1,13 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Login from './components/Login'
+import Home from './components/Home'
+import Options from './components/Options'
+import {createStackNavigator, createAppContainer } from  'react-navigation';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
+const RootStack = createStackNavigator( {
+  Home: Home,
+  Login: Login,
+  Options: Options
+})
+
+const App = createAppContainer(RootStack);
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
