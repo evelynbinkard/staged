@@ -7,14 +7,32 @@ const Backstage = conn.define('backstage', {
     password: Sequelize.STRING,
     id: {
         type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true
       },
-    phone: Sequelize.INTEGER(10),
-    call_time: Sequelize.DATE,
-    check_in_time: Sequelize.DATE,
- 
-}, {underscored: true});
+      phone: Sequelize.INTEGER,
+      call_time: Sequelize.TIME,
+      check_in_time: Sequelize.TIME,
+   
+});
 
-Backstage.belongsTo(Model);
+// conn.sync({force: true})
+// .then(() => {
+//   let count = 1;
+
+//   while(count <= 26) {
+//     Backstage.create({
+        
+//         name: 'bob',
+//         password: 'password',
+//         call_time: '16:00:00',
+//         phone: 1234567,
+//     })
+//     count++
+//   }
+// })
+// .catch(err => console.log(err));
+
+Backstage.belongsTo(Model, {foreignKey: 'modelID'});
 
 module.exports = Backstage;

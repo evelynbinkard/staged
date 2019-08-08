@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const conn = require('./db/conn');
-const Model = require('./db/models/Model');
+//const Model = require('./db/models/Model');
 const Backstage = require('./db/models/Backstage');
 const Collection = require('./db/models/Collection');
 const Designer = require('./db/models/Designer');
@@ -13,5 +13,7 @@ const Producer = require('./db/models/Producer');
 
 
 conn.sync({ logging: false, force: true });
+
+
 
 app.listen(3000, () => console.log('server up at 3000!'))
