@@ -2,7 +2,7 @@ const conn = require('../conn');
 const { Sequelize } = conn;
 
 
-const Producer = conn.define('backstage', {
+const Producer = conn.define('producer', {
     name: Sequelize.STRING,
     password: Sequelize.STRING,
     id: {

@@ -7,7 +7,6 @@ const Backstage = conn.define('backstage', {
     password: Sequelize.STRING,
     id: {
         type: Sequelize.UUID,
-        
         primaryKey: true
       },
     phone: Sequelize.INTEGER(10),

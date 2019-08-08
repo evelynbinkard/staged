@@ -6,7 +6,6 @@ const Collection = conn.define('collection', {
     name: Sequelize.STRING,
     id: {
         type: Sequelize.UUID,
-        
         primaryKey: true
       },
     song: Sequelize.STRING,

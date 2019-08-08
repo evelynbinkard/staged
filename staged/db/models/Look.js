@@ -3,7 +3,7 @@ const { Sequelize } = conn;
 const Collection = require('./Collection');
 const Model = require('./Model');
 
-const Look = conn.define('Look', {
+const Look = conn.define('look', {
     description: Sequelize.STRING,
     id: {
         type: Sequelize.UUID,

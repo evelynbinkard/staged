@@ -6,7 +6,6 @@ const Model = conn.define('model', {
     password: Sequelize.STRING,
     id: {
         type: Sequelize.UUID,
-        //defaultValue: Sequelize.UUIDV4,
         primaryKey: true
       },
     phone: Sequelize.INTEGER(10),
