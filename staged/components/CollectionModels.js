@@ -14,15 +14,27 @@ export default class CollectionModels extends React.Component {
             designers: [],
             name: this.props.navigation.getParam('name', 'no name')
         }
-        this.checkIn = this.checkIn.bind(this)
+       
     }
     componentDidMount () {
         axios.get(`http://localhost:3000/collectionmodels/${this.state.name}`)
-        .then(result => console.log(result))
+        .then(result => this.setState({models: result.data}))
     }
     render() {
-        <View>
-            <Text>Here are your models, {this.state.name}</Text>
-        </View>
+        const modelNames = this.state.models.map(model => {
+            return (
+                <Text>{model}</Text>
+                )   
+        });
+        
+        return (
+            <View>
+                <Text>Here are your models:</Text>
+                <ScrollView>
+                    <Text>{modelNames}</Text>
+                </ScrollView>
+            </View>
+        )
+        
     }
 }

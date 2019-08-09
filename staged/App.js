@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Options from './components/Options';
 import CheckIn from './components/CheckIn';
 import CollectionModels from './components/CollectionModels';
+import DressersModel from './components/DressersModel'
 import {createStackNavigator, createAppContainer } from  'react-navigation';
 
 const RootStack = createStackNavigator( {
@@ -12,7 +13,8 @@ const RootStack = createStackNavigator( {
   Login: Login,
   Options: Options,
   CheckIn: CheckIn,
-  CollectionModels: CollectionModels
+  CollectionModels: CollectionModels,
+  DressersModel: DressersModel
 })
 
 const App = createAppContainer(RootStack);

@@ -35,9 +35,31 @@ app.get('/designers/:name', (req, res) => {
 
 app.get('/collectionmodels/:designername', (req, res) => {
     const designer = req.params.designername;
+    
+    conn.getModels(designer, (err, results) => {
+        if (err) {
+            console.log(err)
+        } else {
+           Promise.all(results).then(models => {
+               return models.map(model => {
+                return model.rows[0].name;
+           })
+        }).then(results => res.json(results))
+        }
+    })
+    
+})
 
-    conn.getModels(designer)
-    .then(results => console.log(results.rows))
+app.get('/present/:dresser', (req, res) => {
+    let dresser = req.params.dresser
+    conn.yourModel(dresser, (err, results) => {
+        if (err) {
+            console.log(err)
+        } else {
+            results[1].then(result => res.json({name: results[0], present: result}))
+        }
+    })
+  
 })
 //conn.sync({ logging: false, force: true });
 

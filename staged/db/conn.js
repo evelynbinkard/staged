@@ -53,9 +53,25 @@ const getDesigners = (name) => {
     })
 }
 
-const getModels = (designer) => {
-    return new Promise ((res, rej) => {
-        pool.query(`SELECT * FROM models WHERE id` = )
-    })
+const getModels = (designer, cb) => {
+    
+    return pool.query((`SELECT model_uuid FROM looks WHERE collection_id = 
+        (SELECT id FROM collections where designer_id =
+        (SELECT id FROM designers WHERE name = '${designer}'));`))
+        .then((data) => {
+            return data.rows.map((model) => {
+                    return pool.query(`SELECT name FROM models where uuid = '${model.model_uuid}';`)
+            })
+            
+        })
+        .then(promises => cb(null, promises))         
 }
-module.exports = {conn, getUsers, markPresent, getDesigners, getModels};
+
+const yourModel = (dresser, cb) => {
+    
+    return pool.query(`SELECT model_name from backstages ORDER BY RANDOM() Limit 1;`)
+        .then(data => data.rows[0])
+        .then(result => [result, pool.query(`SELECT check_in_time from models WHERE name = '${result}';`)])
+        .then(presence => cb(null, presence))
+}
+module.exports = {conn, getUsers, markPresent, getDesigners, getModels, yourModel};

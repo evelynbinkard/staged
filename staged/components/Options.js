@@ -14,7 +14,8 @@ export default class Options extends React.Component {
             calltime: '',
             designers: [],
             name: this.props.navigation.getParam('name'),
-            role: this.props.navigation.getParam('role')
+            role: this.props.navigation.getParam('role'),
+            dressersModel: ''
         }
         
     }
@@ -82,8 +83,10 @@ export default class Options extends React.Component {
         return (
             <View style={styles.container}>
                 <Text>Welcome, {name}!</Text>
-                <Text>You're assigned to 'model'. S/he is/not checked in.</Text>
-                <Text>You will be working with the following designers/collections</Text>
+                <Button
+                    title="Check in on your model"
+                    onPress= {() => this.props.navigation.navigate('DressersModel', {name: this.state.name})}
+                />
             </View>
         );
     }
