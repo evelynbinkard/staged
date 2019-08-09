@@ -16,7 +16,7 @@ const Designer = conn.define('designer', {
 });
 const designers = ['Zubair', 'Kim', 'Mentakis']
 
-// conn.sync({force: true})
+// conn.sync({force: false})
 // .then(() => designers.forEach(designer => {
 //   Designer.create({
       

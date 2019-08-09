@@ -12,7 +12,7 @@ const Look = conn.define('look', {
       },
 }, {underscored: true});
 
-// conn.sync({force: true})
+// conn.sync({force: false})
 // .then(() => {
 //   let count = 1;
 

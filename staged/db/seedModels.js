@@ -42,3 +42,6 @@ conn.sync({force: true})
         headshot: model.headshot
     })
 }));
+  // SELECT name FROM collections WHERE id = 
+            // (SELECT collection_id FROM looks WHERE model_uuid = 
+            //     (SELECT id FROM models WHERE name = '${name}'))`

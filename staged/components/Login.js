@@ -7,7 +7,8 @@ export default class Login extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            text: ''
+            text: '',
+            role: '',
         }
       
     }
@@ -17,7 +18,7 @@ export default class Login extends React.Component {
     return (
       <View style={styles.container}>
        
-        <TextInput placeholder="name"/>
+        <TextInput placeholder="name" onChangeText={(text) => this.setState({text})}/>
         <TextInput placeholder="password" />
         <DropdownMenu
           style={{flex: 1}}
@@ -25,7 +26,7 @@ export default class Login extends React.Component {
           tintColor={'#666666'}
           activityTintColor={'green'}
           maxHeight={300} 
-          handler={(selection, row) => this.setState({text: data[selection][row]})}
+          handler={(selection, row) => this.setState({role: data[selection][row]})}
           data={data}
         >
 
@@ -37,9 +38,10 @@ export default class Login extends React.Component {
         <Button title="Enter"
             onPress={
                 () => this.props.navigation.navigate('Options', {
-                    role: this.state.text
+                    name: this.state.text,
+                    role: this.state.role
                 })
-            }/>
+            }></Button>
       </View>
     );
   }

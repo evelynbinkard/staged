@@ -15,7 +15,7 @@ const Producer = conn.define('producer', {
 });
 
 
-// conn.sync({force: true})
+// conn.sync({force: false})
 // .then(() => 
 //   Producer.create({
       

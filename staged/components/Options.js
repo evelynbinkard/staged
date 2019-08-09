@@ -1,36 +1,78 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button} from 'react-native';
 import { createStackNavigator} from 'react-navigation';
+import axios from 'axios';
+
+
 
 
 export default class Options extends React.Component {
+
+    constructor (props) {
+        super(props);
+        this.state = {
+            calltime: '',
+            designers: [],
+            name: this.props.navigation.getParam('name'),
+            role: this.props.navigation.getParam('role')
+        }
+        
+    }
+
+    componentDidMount() {
+        let name = this.state.name;
+        
+        axios.get(`http://localhost:3000/designers/${name}`)
+        .then(results => this.setState({designers: results.data}))
+        .catch(err => console.log(err))
+    }
     
     render () {
-    const role = this.props.navigation.getParam('role', 'no role designated');
+        const role = this.props.navigation.getParam('role', 'no role designated');
+        const name = this.props.navigation.getParam('name', 'no name')
     
     if (role === 'model'){
+        const designerlist = this.state.designers.map(designer => {
+            return (
+                <Text>{designer.name}</Text>
+            )
+        })
         return (
             <View style={styles.container}>
-                <Text>Welcome!</Text>
-                <Text>Your call time is:</Text>
+                <Text>Welcome, {name}!</Text>
+                <Text>Your call time is: 18.00</Text>
                 <Text>You are walking for the following designers:</Text>
+                    <Text>
+
+                    {designerlist}
+                </Text>
             </View>
         );
     }
-    if (role === 'producer'){
+    if (role === 'producer') {
         return (
             <View style={styles.container}>
-                <Text>Welcome! Would you like to:</Text>
-                <Text>Check in cast</Text>
-                <Text>See a show summary</Text>
+                <Text>Welcome, Linden! Would you like to:</Text>
+                <Button 
+                    title="Check in personnel"
+                    onPress={
+                        () => this.props.navigation.navigate('CheckIn')
+                    }
+                />
+                {/* <Text>See a show summary</Text> */}
             </View>
         );
     }
     if (role === 'designer'){
         return (
             <View style={styles.container}>
-                <Text>Welcome! Would you like to:</Text>
-                <Text>View assigned models for your collections</Text>
+                <Text>Welcome, {name}! Would you like to:</Text>
+                <Button 
+                    title="View models assigned to collection"
+                    onPress={
+                        () => this.props.navigation.navigate('CollectionModels', {name: this.state.name})
+                    }
+                />
                 <Text>View tearsheet</Text>
                 <Text>Double check your playlists for your scenes</Text>
             </View>
@@ -39,13 +81,13 @@ export default class Options extends React.Component {
     if (role === 'backstage') {
         return (
             <View style={styles.container}>
-                <Text>Welcome!</Text>
+                <Text>Welcome, {name}!</Text>
                 <Text>You're assigned to 'model'. S/he is/not checked in.</Text>
                 <Text>You will be working with the following designers/collections</Text>
             </View>
         );
     }
-  }
+ }
 }
 
 const styles = StyleSheet.create({

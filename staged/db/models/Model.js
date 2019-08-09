@@ -2,6 +2,8 @@ const conn = require('../conn');
 const { Sequelize } = conn;
 
 
+
+
 const Model = conn.define('model', {
     name: Sequelize.STRING,
     password: Sequelize.STRING,
@@ -50,7 +52,7 @@ const hratx42 = [
 // const createID = () => {
 //   return (count++).toString();
 // }
-// conn.sync({force: true})
+// conn.sync({force: false})
 // .then(() => hratx42.forEach(model => {
 //   Model.create({
       
@@ -64,4 +66,15 @@ const hratx42 = [
 // }))
 // .catch(err => console.log(err));
 
-module.exports = Model;
+const notCheckedIn = () => {
+  return Model.findAll()
+  //({
+  //     // attributes: [name, phone],
+  //     // where: {
+  //     //     checked_in: null,
+  //     // },
+  //     order: [name, DESC]
+  // }) 
+}
+
+module.exports = {Model, notCheckedIn};
